@@ -1,5 +1,7 @@
 package br.com.senai.softwareacademia;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.MessageDigestAlgorithms;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +25,7 @@ public class InitApp {
 	@Bean
 	public CommandLineRunner commandLineRuner(ApplicationContext ctx) {
 		return args -> {
+			
 			System.out.println("Subiuuu");
 		};
 	}

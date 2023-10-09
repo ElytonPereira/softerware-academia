@@ -1,10 +1,12 @@
 package br.com.senai.softwareacademia.entity;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.MessageDigestAlgorithms;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -32,9 +34,20 @@ public class Usuario {
 	@Column(name = "senha")	
 	private String senha;
 	
-	@Transient
-	public boolean isPersistido() {
-		return getLogin() != null;
+	public Usuario() {}
+	
+	public Usuario(
+			String login,String nome,String senha) {
+		
+		this.login = login;
+		this.nome = nome;
+		this.senha = senha;
 	}
+
+	
+
+	
+	
+	
 	
 }
