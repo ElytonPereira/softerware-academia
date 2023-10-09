@@ -10,9 +10,9 @@
 	<relativePath/>
   </parent>
   <groupId>br.com.senai</groupId>
-  <artifactId>cardapios-mktplace-api</artifactId>
+  <artifactId>softwareacademia</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>cardapios-mktplace-api</name>
+  <name>softwareacademia</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
 	<guava.version>32.1.2-jre</guava.version>	
