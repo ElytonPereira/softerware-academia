@@ -1,8 +1,7 @@
 package br.com.senai.softwareacademia.service.impl;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.MessageDigestAlgorithms;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
@@ -20,17 +19,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario salvar(Usuario usuario) {
 		
-		String senhaCript = gerarHashDa(usuario.getSenha());
-		
+		String senhaCript = gerarHashDa(usuario.getSenha());		
 		
 		Usuario outroUsuario = repository.buscarPor(usuario.getLogin());
 		if (outroUsuario != null) {			
 				
-				Preconditions.checkArgument(!outroUsuario.equals(usuario), "O usuario ja existe");
-			
+				Preconditions.checkArgument(!outroUsuario.equals(usuario), "O usuario ja existe");			
 		}
 		
-		Usuario usuarioNovo = new Usuario(usuario.getLogin(), usuario.getNome(), senhaCript);
+		Usuario usuarioNovo = new Usuario(usuario.getLogin(), usuario.getNome(), senhaCript, usuario.getPapel());
 		Usuario usuarioSalvo = repository.save(usuarioNovo);
 		
 		return usuarioSalvo;
@@ -44,7 +41,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	private String gerarHashDa(String senha) {
-		return new DigestUtils(MessageDigestAlgorithms.SHA3_256).digestAsHex(senha);
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		String senhaCriptografada = bCryptPasswordEncoder.encode(senha);
+		
+		return senhaCriptografada;
 		
 	}
 	

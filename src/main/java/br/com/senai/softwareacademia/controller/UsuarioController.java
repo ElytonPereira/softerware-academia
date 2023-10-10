@@ -16,7 +16,7 @@ import br.com.senai.softwareacademia.entity.Usuario;
 import br.com.senai.softwareacademia.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/criarconta")
 public class UsuarioController {
 	
 	@Autowired

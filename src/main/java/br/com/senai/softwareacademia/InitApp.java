@@ -1,12 +1,11 @@
 package br.com.senai.softwareacademia;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.MessageDigestAlgorithms;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.datatype.hibernate5.jakarta.Hibernate5JakartaModule;
 
@@ -25,8 +24,13 @@ public class InitApp {
 	@Bean
 	public CommandLineRunner commandLineRuner(ApplicationContext ctx) {
 		return args -> {
+			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+			String p = bCryptPasswordEncoder.encode("SomeCoolPassword");
+			System.out.println(bCryptPasswordEncoder.matches("SomeCoolPassword", p));
 			
-			System.out.println("Subiuuu");
+			System.out.println("Subiuuu "  + p);
 		};
 	}
+
 }
+
