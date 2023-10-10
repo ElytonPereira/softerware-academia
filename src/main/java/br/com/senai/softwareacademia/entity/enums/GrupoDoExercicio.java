@@ -1,8 +1,13 @@
 package br.com.senai.softwareacademia.entity.enums;
 
-public enum TipoDeTreino {
+public enum GrupoDoExercicio {
 	
-	MASSA,
-	PERDA,
+	A,
+	B,
+	C,
+	D,
+	E,
+	F,
+	G
 	
 }

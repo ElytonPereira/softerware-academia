@@ -1,6 +1,7 @@
 package br.com.senai.softwareacademia.entity;
 
-import br.com.senai.softwareacademia.entity.enums.TipoDeExercicio;
+import br.com.senai.softwareacademia.entity.enums.GrupoDoExercicio;
+import br.com.senai.softwareacademia.entity.enums.ObjetivoDoTreino;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -45,16 +46,46 @@ public class Exercicio {
 	@NotBlank(message = "A quantidade de series é obrigatória")
 	@Column(name = "series")
 	private int series;
-	
+
 	@Enumerated(value = EnumType.STRING)
 	@NotNull(message = "O tipo do exercicio é obrigatório!")
 	@Column(name = "tipo")
-	private TipoDeExercicio tipo;
+	private GrupoDoExercicio grupo;
+	
+	public Exercicio (Treino treino) {
+		this.duracaoDescanso = calcularTempoDeDescanso(treino.getObjetivo());
+	
+	}
+	
 
 	@Override
 	public String toString() {
 		return "\n Exercicio: " + descricaoExercicio + "\n Descanso: " + duracaoDescanso + " sec" + "\n Repetições: "
-				+ qtdRepeticoes + "\n Series: " + series + "\n Treino: " + tipo;
+				+ qtdRepeticoes + "\n Series: " + series + "\n Treino: " + grupo;
+	}
+
+	public static int calcularTempoDeDescanso(ObjetivoDoTreino objetivo) {
+		int tempoDescanso = 0;
+
+		switch (objetivo) {
+		case HIPERTROFIA:
+			tempoDescanso = 90;
+			break;
+		case FORCA:
+			tempoDescanso = 180;
+			break;
+		case RESISTENCIA:
+			tempoDescanso = 30;
+			break;
+		case PERDA:
+			tempoDescanso = 30;
+			break;
+		default:
+			throw new IllegalArgumentException("É preciso passar o objetivo do treino!");
+			
+		}
+
+		return tempoDescanso;
 	}
 
 }
