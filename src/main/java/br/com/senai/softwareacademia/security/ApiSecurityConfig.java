@@ -62,6 +62,20 @@ public class ApiSecurityConfig {
 		return ccs;
 	}
 	
+	/*	@Bean
+	public org.springframework.web.filter.CorsFilter urlBasedCorsConfigurationSource() {
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.applyPermitDefaultValues();
+		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+		corsConfiguration.setExposedHeaders(Arrays.asList("*"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+		UrlBasedCorsConfigurationSource ccs = new UrlBasedCorsConfigurationSource();
+		ccs.registerCorsConfiguration("/**", corsConfiguration);
+		return new org.springframework.web.filter.CorsFilter(ccs);
+	}*/
+	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http

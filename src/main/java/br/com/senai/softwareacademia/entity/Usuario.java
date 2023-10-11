@@ -40,7 +40,9 @@ public class Usuario {
 	@Column(name = "papel")
 	private Papel papel;
 	
-	public Usuario() {}
+	public Usuario() {
+		this.papel = papel.CLIENTE;
+	}
 	
 	public Usuario(
 			String login,String nome,String senha, Papel papel) {
@@ -50,6 +52,8 @@ public class Usuario {
 		this.senha = senha;
 		this.papel = papel;
 	}
+	
+
 
 	
 
