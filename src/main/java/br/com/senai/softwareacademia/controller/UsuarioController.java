@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.softwareacademia.entity.Usuario;
 import br.com.senai.softwareacademia.service.UsuarioService;
 
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/criarconta")
 public class UsuarioController {
