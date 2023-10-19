@@ -17,9 +17,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -39,9 +39,9 @@ public class Treino {
 	@NotBlank(message = "A descrição do treino é obrigatória")
 	@Column(name = "descricao")
 	private String descricao;
-
+	
 	@ToString.Exclude
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Exercicio.class)
 	@NotNull(message = "O exercicio é obrigatório")
 	@JoinColumn(name = "id_exercicio")
 	private List<Exercicio> exercicios;
@@ -51,21 +51,21 @@ public class Treino {
 	private LocalDate duracao;
 
 	@Enumerated(value = EnumType.STRING)
-	@NotNull(message = "O tipo do treino é obrigatório!")
-	@Column(name = "tipo")
+	@NotNull(message = "O objetivo do treino é obrigatório!")
+	@Column(name = "objetivo")
 	private ObjetivoDoTreino objetivo;
 
 	public Treino() {
 		this.duracao = calcularDuracaoTreino();
 		this.exercicios = new ArrayList<Exercicio>();
-
 	}
 
 	@Override
 	public String toString() {
 		return "Treino - " + descricao + "\n" + exercicios.toString() + "\n, Duração:" + duracao + ", Tipo:" + objetivo;
 	}
-
+	
+	@Transient
 	public LocalDate calcularDuracaoTreino() {
 
 		LocalDate dataAtual = LocalDate.now();

@@ -49,8 +49,8 @@ public class Exercicio {
 
 	@Enumerated(value = EnumType.STRING)
 	@NotNull(message = "O tipo do exercicio é obrigatório!")
-	@Column(name = "tipo")
-	private GrupoDoExercicio grupo;
+	@Column(name = "grupo")
+	private GrupoDoExercicio grupo;	
 	
 	public Exercicio (Treino treino) {
 		this.duracaoDescanso = calcularTempoDeDescanso(treino.getObjetivo());
