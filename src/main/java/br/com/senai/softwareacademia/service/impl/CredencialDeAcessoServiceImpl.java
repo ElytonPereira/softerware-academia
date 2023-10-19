@@ -23,6 +23,7 @@ public class CredencialDeAcessoServiceImpl implements UserDetailsService{
 			throws UsernameNotFoundException {
 		Usuario usuario = repository.buscarPor(login);
 		Preconditions.checkNotNull(usuario, "O usuário não existe");
+		
 		return new CredencialDeAcesso(usuario);
 	}
 

@@ -22,6 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import br.com.senai.softwareacademia.service.impl.CredencialDeAcessoServiceImpl;
 
+
 @Configuration
 @EnableWebSecurity
 public class ApiSecurityConfig {
@@ -48,9 +49,10 @@ public class ApiSecurityConfig {
 		authenticationProvider.setUserDetailsService(service);
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
 		return authenticationProvider;
-	}
+	}	
 	
-	private UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource() {
+	@Bean
+	public UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.applyPermitDefaultValues();
 		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
@@ -58,23 +60,11 @@ public class ApiSecurityConfig {
 		corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
 		corsConfiguration.setExposedHeaders(Arrays.asList("*"));
 		UrlBasedCorsConfigurationSource ccs = new UrlBasedCorsConfigurationSource();
-		ccs.registerCorsConfiguration("/**", corsConfiguration);
+		ccs.registerCorsConfiguration("/*", corsConfiguration);
 		return ccs;
 	}
 	
-	/*	@Bean
-	public org.springframework.web.filter.CorsFilter urlBasedCorsConfigurationSource() {
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.applyPermitDefaultValues();
-		corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
-		corsConfiguration.setAllowedMethods(Arrays.asList("*"));
-		corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
-		corsConfiguration.setExposedHeaders(Arrays.asList("*"));
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-		UrlBasedCorsConfigurationSource ccs = new UrlBasedCorsConfigurationSource();
-		ccs.registerCorsConfiguration("/**", corsConfiguration);
-		return new org.springframework.web.filter.CorsFilter(ccs);
-	}*/
+	
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
