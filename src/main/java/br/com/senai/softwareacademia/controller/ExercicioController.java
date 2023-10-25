@@ -50,15 +50,15 @@ public class ExercicioController {
 			paginacao = PageRequest.of(0, 15);
 
 		}
-		Page<Exercicio> exercicio = service.listarPor(grupo, paginacao);
+		Page<Exercicio> exercicio = service.listarPorGrupo(grupo, paginacao);
 
 		return ResponseEntity.ok(converter.toJsonList(exercicio));		
 
 	}
 
-	@GetMapping
-	public ResponseEntity<?> listarPorTreino(@RequestParam("treino") Treino treino,
-			@RequestParam("pagina") Optional<Integer> pagina) {
+	@GetMapping("/treino/{treino}/pagina/{pagina}")
+	public ResponseEntity<?> listarPorTreino(@PathVariable("treino") Integer idDotreino,
+			@PathVariable("pagina") Optional<Integer> pagina) {
 		Pageable paginacao = null;
 
 		if (pagina.isPresent()) {
@@ -68,7 +68,8 @@ public class ExercicioController {
 
 		}
 
-		Page<Exercicio> exercicio = service.listarPor(treino, paginacao);
+		Page<Exercicio> exercicio = service.listarPorTreino(idDotreino, paginacao);
+		
 
 		return ResponseEntity.ok(converter.toJsonList(exercicio));
 		

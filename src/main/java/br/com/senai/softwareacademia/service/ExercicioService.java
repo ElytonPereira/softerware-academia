@@ -26,14 +26,14 @@ public interface ExercicioService {
 			@NotNull(message = "O exercicio salvo é obrigatório!")
 			Exercicio exercicioSalvo);
 	
-	public Page<Exercicio> listarPor(
+	public Page<Exercicio> listarPorGrupo(
 			@NotNull(message = "O objetivo do treino é obrigatório")
 			GrupoDoExercicio grupo, Pageable paginacao);
 	
 	
-	public Page<Exercicio> listarPor (
+	public Page<Exercicio> listarPorTreino (
 			@NotNull(message = "O treino é obrigatório!")
-			Treino treino, Pageable paginacao);
+			Integer idDotreino, Pageable paginacao);
 	
 	public Exercicio buscarPor(
 			@NotNull(message = "O id é obrigatório!")

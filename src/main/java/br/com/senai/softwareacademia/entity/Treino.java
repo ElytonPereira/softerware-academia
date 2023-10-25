@@ -15,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -41,14 +43,14 @@ public class Treino {
 	private String descricao;
 	
 	@ToString.Exclude
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Exercicio.class)
+	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Exercicio.class)
+	@JoinTable(name = "treino_exercicio", joinColumns = @JoinColumn(name = "id_treino"), inverseJoinColumns = @JoinColumn(name = "id_exercicio"))
 	@NotNull(message = "O exercicio é obrigatório")
-	@JoinColumn(name = "id_exercicio")
 	private List<Exercicio> exercicios;
 
 	@NotBlank(message = "A duração é obrigatória")
-	@Column(name = "duracao")
-	private LocalDate duracao;
+	@Column(name = "duracao_meses")
+	private Integer duracao;
 
 	@Enumerated(value = EnumType.STRING)
 	@NotNull(message = "O objetivo do treino é obrigatório!")
@@ -66,12 +68,12 @@ public class Treino {
 	}
 	
 	@Transient
-	public LocalDate calcularDuracaoTreino() {
+	public Integer calcularDuracaoTreino() {
 
 		LocalDate dataAtual = LocalDate.now();
 		LocalDate duracaoTreino = dataAtual.plus(Period.ofMonths(3));
 
-		return duracaoTreino;
+		return duracaoTreino.getMonthValue();
 	}
 
 }

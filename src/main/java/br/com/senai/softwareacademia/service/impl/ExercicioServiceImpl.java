@@ -37,7 +37,7 @@ public class ExercicioServiceImpl implements ExercicioService {
 	}
 
 	@Override
-	public Page<Exercicio> listarPor(GrupoDoExercicio grupo, Pageable paginacao) {
+	public Page<Exercicio> listarPorGrupo(GrupoDoExercicio grupo, Pageable paginacao) {
 		
 		Page<Exercicio> exercicios = repository.ListarPorGrupo(grupo, paginacao);
 		Preconditions.checkNotNull(exercicios, "Não foi encontrado exercicio para o grupo informado");
@@ -45,9 +45,10 @@ public class ExercicioServiceImpl implements ExercicioService {
 	}
 
 	@Override
-	public Page<Exercicio> listarPor(Treino treino, Pageable paginacao) {
-		Treino treinoSalvo = treinoRepository.ListarPor(treino.getId());
-		Page<Exercicio> exercicios = repository.ListarPorTreino(treinoSalvo, paginacao);
+	public Page<Exercicio> listarPorTreino(Integer idDoTreino, Pageable paginacao) {
+		
+		Page<Exercicio> exercicios = repository.ListarPorTreino(idDoTreino, paginacao);
+		Preconditions.checkNotNull(exercicios, "Não foi encontrado exercicio para o treino informado");
 		return exercicios;
 	}
 
