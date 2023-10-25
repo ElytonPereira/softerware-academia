@@ -22,7 +22,7 @@ public interface ExercicioService {
 
 	public Exercicio alterar(
 			@Valid
-			@NotNull(message = "O cardápio salvo é obrigatório!")
+			@NotNull(message = "O exercicio salvo é obrigatório!")
 			Exercicio exercicioSalvo);
 	
 	public Page<Exercicio> listarPor(

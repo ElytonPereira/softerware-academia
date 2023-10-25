@@ -18,7 +18,7 @@ public interface TreinoRepository extends JpaRepository<Treino, Integer> {
 	public Treino ListarPor(Integer id);  
 	
 	@Query(value = "SELECT t FROM Treino t JOIN FETCH t.exercicios e WHERE t.objetivo = :objetivo",
-			countQuery = "SELECT Count(t) FROM Treino t JOIN FETCH t.exercicios e WHERE t.objetivo = :objetivo")
+			countQuery = "SELECT Count(t) FROM Treino t WHERE t.objetivo = :objetivo")
 	public Page<Treino> ListarPor(ObjetivoDoTreino objetivo, Pageable paginacao);  
 	
 	

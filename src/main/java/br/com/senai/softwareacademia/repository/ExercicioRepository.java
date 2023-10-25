@@ -16,7 +16,7 @@ public interface ExercicioRepository extends JpaRepository<Exercicio, Integer> {
 	public Exercicio ListarPor(Integer id);
 
 
-	@Query(value = "SELECT t FROM Treino t JOIN FETCH t.exercicios e WHERE t.id = :id", countQuery = "SELECT Count(t) FROM Treino t JOIN FETCH t.exercicios e WHERE t.id = :id")
+	@Query(value = "SELECT t FROM Treino t JOIN FETCH t.exercicios e WHERE t.id = :id", countQuery = "SELECT Count(t) FROM Treino t WHERE t.id = :id")
 	public Page<Exercicio> ListarPor(Integer id, Pageable paginacao);
 
 	@Query(value = "SELECT e FROM Exercicio e WHERE e.grupo = :grupo", countQuery = "SELECT Count(e) FROM Exercicio e WHERE e.grupo = :grupo")

@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "exercicio")
 @Entity(name = "Exercicio")
-@AllArgsConstructor
+@AllArgsConstructor 
 public class Exercicio {
 
 	@Id
@@ -51,6 +51,10 @@ public class Exercicio {
 	@NotNull(message = "O tipo do exercicio é obrigatório!")
 	@Column(name = "grupo")
 	private GrupoDoExercicio grupo;	
+	
+	public Exercicio() {
+		
+	}
 	
 	public Exercicio (Treino treino) {
 		this.duracaoDescanso = calcularTempoDeDescanso(treino.getObjetivo());
