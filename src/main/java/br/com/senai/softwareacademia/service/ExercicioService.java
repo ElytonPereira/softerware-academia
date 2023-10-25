@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 
 import br.com.senai.softwareacademia.entity.Exercicio;
 import br.com.senai.softwareacademia.entity.Treino;
+import br.com.senai.softwareacademia.entity.enums.GrupoDoExercicio;
 import br.com.senai.softwareacademia.entity.enums.ObjetivoDoTreino;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +28,7 @@ public interface ExercicioService {
 	
 	public Page<Exercicio> listarPor(
 			@NotNull(message = "O objetivo do treino é obrigatório")
-			ObjetivoDoTreino objetivo);
+			GrupoDoExercicio grupo, Pageable paginacao);
 	
 	
 	public Page<Exercicio> listarPor (

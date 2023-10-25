@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.softwareacademia.entity.Exercicio;
 import br.com.senai.softwareacademia.entity.Treino;
+import br.com.senai.softwareacademia.entity.enums.GrupoDoExercicio;
 import br.com.senai.softwareacademia.entity.enums.ObjetivoDoTreino;
 import br.com.senai.softwareacademia.service.ExercicioService;
 
@@ -40,10 +41,16 @@ public class ExercicioController {
 		
 	}
 
-	@GetMapping("/objetivo/{objetivo}")
-	public ResponseEntity<?> listarPorObjetivo(@RequestParam("objetivo") ObjetivoDoTreino objetivo) {
+	@GetMapping("/grupo/{grupo}/pagina/{pagina}")
+	public ResponseEntity<?> listarPorGrupo(@PathVariable("grupo") GrupoDoExercicio grupo,@PathVariable("pagina") Optional<Integer> pagina) {
+		Pageable paginacao = null;
+		if (pagina.isPresent()) {
+			paginacao = PageRequest.of(pagina.get(), 15);
+		} else {
+			paginacao = PageRequest.of(0, 15);
 
-		Page<Exercicio> exercicio = service.listarPor(objetivo);
+		}
+		Page<Exercicio> exercicio = service.listarPor(grupo, paginacao);
 
 		return ResponseEntity.ok(converter.toJsonList(exercicio));		
 

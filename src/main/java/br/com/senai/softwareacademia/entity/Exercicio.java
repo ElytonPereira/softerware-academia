@@ -48,7 +48,7 @@ public class Exercicio {
 	private int series;
 
 	@Enumerated(value = EnumType.STRING)
-	@NotNull(message = "O tipo do exercicio é obrigatório!")
+	@NotNull(message = "O grupo do exercicio é obrigatório!")
 	@Column(name = "grupo")
 	private GrupoDoExercicio grupo;	
 	

@@ -84,6 +84,8 @@ public class ApiSecurityConfig {
 						.permitAll()
 						.requestMatchers("/exercicios/**")
 						.permitAll()
+						.requestMatchers("/grupo/**")
+						.permitAll()
 					.anyRequest().authenticated())
 			.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(authenticationProvider())
