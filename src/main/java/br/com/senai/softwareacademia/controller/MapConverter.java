@@ -73,6 +73,7 @@ public class MapConverter implements Serializable{
 	public Map<String, Object> toJsonMap(Object obj, String... exclusoes) {
 		try {
 			String jsonPlano = conversor.writeValueAsString(obj);
+			System.out.println(jsonPlano);
 			JSONObject jsonObj = new JSONObject(jsonPlano);
 			this.removeEmptyAndNullFields(jsonObj, exclusoes);
 			return jsonObj.toMap();

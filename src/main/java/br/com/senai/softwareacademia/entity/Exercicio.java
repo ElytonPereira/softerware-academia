@@ -1,5 +1,7 @@
 package br.com.senai.softwareacademia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.senai.softwareacademia.entity.enums.GrupoDoExercicio;
 import br.com.senai.softwareacademia.entity.enums.ObjetivoDoTreino;
 import jakarta.persistence.Column;
@@ -22,6 +24,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "exercicio")
 @Entity(name = "Exercicio")
 @AllArgsConstructor 
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"hibernateLazyInitializer", "handler"})
 public class Exercicio {
 
 	@Id

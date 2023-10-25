@@ -71,7 +71,7 @@ public class ExercicioController {
 		Page<Exercicio> exercicio = service.listarPorTreino(idDotreino, paginacao);
 		
 
-		return ResponseEntity.ok(converter.toJsonList(exercicio));
+		return ResponseEntity.ok(converter.toJsonList(exercicio)) ;
 		
 
 	}

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.senai.softwareacademia.entity.Exercicio;
-import br.com.senai.softwareacademia.entity.Treino;
 import br.com.senai.softwareacademia.entity.enums.GrupoDoExercicio;
 
 @Repository
